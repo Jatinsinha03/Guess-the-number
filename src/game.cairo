@@ -15,11 +15,12 @@ mod GuessTheNumber {
 
     #[constructor]
     fn constructor(ref self: ContractState) {
-        // Initialize attempts to zero
+        // Initialize attempts to zero and secret_number to a default value
         self.attempts.write(0);
+        self.secret_number.write(0); // Set a default secret number
     }
 
-    #[abi(embed_v0)]
+    #[abi(embed_v0)] // Ensure ABI embedding is required
     impl GuessTheNumber of super::IGuessTheNumber<ContractState> {
         fn set_secret_number(ref self: ContractState, number: u32) {
             // Set the secret number
